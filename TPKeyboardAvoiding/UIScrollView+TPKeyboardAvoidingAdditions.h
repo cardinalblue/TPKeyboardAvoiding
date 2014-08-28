@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface UIScrollView (TPKeyboardAvoidingAdditions)
+@property (nonatomic, assign) UIEdgeInsets tpk_contentInsetOffsetForKeyboard;
+
 - (BOOL)TPKeyboardAvoiding_focusNextTextField;
 - (void)TPKeyboardAvoiding_scrollToActiveTextField;
 

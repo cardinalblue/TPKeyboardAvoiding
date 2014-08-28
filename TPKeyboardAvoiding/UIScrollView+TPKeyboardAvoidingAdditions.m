@@ -26,6 +26,20 @@ static const int kStateKey;
 @end
 
 @implementation UIScrollView (TPKeyboardAvoidingAdditions)
+@dynamic tpk_contentInsetOffsetForKeyboard;
+
+- (void)setTpk_contentInsetOffsetForKeyboard:(UIEdgeInsets)tpk_contentInsetOffsetForKeyboard
+{
+    NSValue *value = [NSValue valueWithUIEdgeInsets:tpk_contentInsetOffsetForKeyboard];
+    objc_setAssociatedObject(self, @selector(tpk_contentInsetOffsetForKeyboard),
+                             value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIEdgeInsets)tpk_contentInsetOffsetForKeyboard
+{
+    NSValue *value = objc_getAssociatedObject(self, @selector(tpk_contentInsetOffsetForKeyboard));
+    return [value UIEdgeInsetsValue];
+}
 
 - (TPKeyboardAvoidingState*)keyboardAvoidingState {
     TPKeyboardAvoidingState *state = objc_getAssociatedObject(self, &kStateKey);
